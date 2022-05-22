@@ -1,5 +1,4 @@
 CFLAGS=-g -Wall
-CC=gcc
 AR=ar
 RANLIB=ranlib
 LIBS=-L./ -lcgic
@@ -19,14 +18,14 @@ libcgic.a: cgic.o cgic.h
 #mingw32 and cygwin users: replace .cgi with .exe
 
 cgictest.cgi: cgictest.o libcgic.a
-	gcc cgictest.o -o cgictest.cgi ${LIBS}
+	$(CC) cgictest.o -o cgictest.cgi ${LIBS}
 
 capture: capture.o libcgic.a
-	gcc capture.o -o capture ${LIBS}
+	$(CC) capture.o -o capture ${LIBS}
 
 clean:
 	rm -f *.o *.a cgictest.cgi capture cgicunittest
 
 test:
-	gcc -D UNIT_TEST=1 cgic.c -o cgicunittest
+	$(CC) -D UNIT_TEST=1 cgic.c -o cgicunittest
 	./cgicunittest
